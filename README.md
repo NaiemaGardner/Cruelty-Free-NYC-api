@@ -1,32 +1,33 @@
-# Application Title: A Description
+# Cruelty Free | NYC: compassionate alternatives
 
-This application allows the user to do x, y, and z. Maybe here's a reason why I
-wanted to do this project, or came up with this idea.
+
+This application allows the user to create, review, update and delete human and animal cruelty free brands and service providers within the New York City metro area.  Cruelty Free | NYC is intended to spread awareness about the animal harm and civil injustices currently existing within various industries by providing users with compassionate alternative options.
+
 
 ## Important Links
 
-- [Other Repo](www.link.com)
-- [Deployed API](www.link.com)
-- [Deployed Client](www.link.com)
+- [Client Repository](https://github.com/HarlemHubLive/Cruelty-Free-NYC-client)
+- [Deployed Client](https://harlemhublive.github.io/Cruelty-Free-NYC-client/)
+- [Deployed API](https://damp-shore-14818.herokuapp.com/)
+
 
 ## Planning Story
 
-Lorem ipsum dolor amet cloud bread letterpress squid actually, single-origin
-coffee williamsburg af poutine fingerstache austin semiotics paleo man braid
-vexillologist. Tumeric literally banjo pickled disrupt cold-pressed thundercats
-shoreditch try-hard health goth intelligentsia pop-up small batch skateboard
-farm-to-table. Meh tofu fam, direct trade tattooed stumptown etsy everyday
-carry activated charcoal. Neutra cornhole polaroid literally salvia, listicle
-tofu.
+The idea for Cruelty Free came to me as I Google searched 'cruelty free brands nyc' and had to visit various websites to find the information that I was looking for. I thought, why not create a one-stop hub of information where users can find compassionate brands within their area. I used this pitch to create the user stories, wireframes and ERD and ultimately bring the app to life!
+
 
 ### User Stories
 
-- As a user I want to sign in/up
-- As a user I want to Create a new < resource >
-- As a user I want to Read multiple < resources >
-- As a user I want to Read a single < resource >
-- As a user I want to Update a < resource > I own
-- As a user I want to Delete a < resource > I own
+Auth:
+- As a user I want to sign up for an account or sign in to an existing account.
+- As a signed in user I want to change my password or sign out of my account.
+Cards:
+- As a signed in user I want to create a new buisness card post.
+- As a user I want to read multiple buisness cards.
+- As a user I want to read a single buisness page.
+- As a signed in user I want to update a buisness card I own.
+- As a user I want to delete a buisness card I own.
+
 
 ### Technologies Used
 
@@ -35,10 +36,6 @@ tofu.
 - Bootstrap
 - Javascript
 
-### Unsolved Problems
-
-- Still need to ....
-- Would like to eventually ....
 
 ### Authentication
 
@@ -49,12 +46,25 @@ tofu.
 | PATCH  | `/change-password/`    | `users#changepw`  |
 | DELETE | `/sign-out/`           | `users#signout`   |
 
+### Buisness Cards
+
+| Verb   | URI Pattern            | Controller#Action    |
+|--------|------------------------|----------------------|
+| POST   | `/create`              | `cards#create`       |
+| POST   | `/cards`               | `cards#show-all`     |
+| POST   | `/cards/:category`     | `category#show-all`  |
+| POST   | `/cards/:id`           | `card#show`          |
+| PATCH  | `/cards/:id`           | `card#update`        |
+| DELETE | `/cards/:id`           | `card#delete`        |
+
+
+### Unsolved Problems
+
+- Still need to ....
+- Would like to eventually ....
+
+
 ## Images
 
-#### Wireframe:
-![wireframe](https://lucidchart.zendesk.com/hc/article_attachments/360001080866/Facebook_Wireframe_-_New_Page.png)
-
----
-
 #### ERD:
-![ERD](https://www.smartdraw.com/entity-relationship-diagram/img/cardinality.jpg?bn=1510011144)
+![ERD](https://miro.com/app/board/o9J_klBph-Q=/)
