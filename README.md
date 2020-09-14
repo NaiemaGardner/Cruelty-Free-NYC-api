@@ -31,10 +31,8 @@ Cards:
 
 ### Technologies Used
 
-- jQuery
-- HTML/CSS
-- Bootstrap
-- Javascript
+- Express API
+- MongoDB
 
 
 ### Authentication
@@ -67,4 +65,4 @@ Cards:
 ## Images
 
 #### ERD:
-[ERD built with Miro](https://miro.com/app/board/o9J_klBph-Q=/)
+[ERD - built with Miro](https://miro.com/app/board/o9J_klBph-Q=/)
