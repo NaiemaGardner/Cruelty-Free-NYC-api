@@ -67,4 +67,4 @@ Cards:
 ## Images
 
 #### ERD:
-![ERD](https://miro.com/app/board/o9J_klBph-Q=/)
+[ERD built with Miro](https://miro.com/app/board/o9J_klBph-Q=/)
