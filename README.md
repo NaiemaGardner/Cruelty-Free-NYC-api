@@ -9,6 +9,7 @@ This application allows the user to create, review, update and delete human and 
 - [Client Repository](https://github.com/HarlemHubLive/Cruelty-Free-NYC-client)
 - [Deployed Client](https://harlemhublive.github.io/Cruelty-Free-NYC-client/)
 - [Deployed API](https://damp-shore-14818.herokuapp.com/)
+- [Project Requirements](https://docs.google.com/document/d/1K0wAjMes_r_JDwlgIMpGIyV4CiMXHEvT0REooq3Scow/edit?usp=sharing)
 
 
 ## Planning Story
@@ -32,7 +33,9 @@ Cards:
 ### Technologies Used
 
 - Express API
+- Node
 - MongoDB
+- Mongoose
 
 
 ### Authentication
@@ -48,12 +51,21 @@ Cards:
 
 | Verb   | URI Pattern            | Controller#Action    |
 |--------|------------------------|----------------------|
-| POST   | `/create`              | `cards#create`       |
+| POST   | `/cards`               | `cards#create`       |
 | POST   | `/cards`               | `cards#show-all`     |
 | POST   | `/cards/:category`     | `category#show-all`  |
 | POST   | `/cards/:id`           | `card#show`          |
 | PATCH  | `/cards/:id`           | `card#update`        |
 | DELETE | `/cards/:id`           | `card#delete`        |
+
+### Comments
+
+| Verb   | URI Pattern             | Controller#Action    |
+|--------|-------------------------|----------------------|
+| POST   | `/cards/:id/comments`   | `comments#create`    |
+| POST   | `/cards/:id/comments`   | `comments#show-all`  |
+| PATCH  | `comments/:id`          | `comment#update`     |
+| DELETE | `comments/:id`          | `comment#delete`     |
 
 
 ### Unsolved Problems

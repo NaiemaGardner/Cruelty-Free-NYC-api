@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash email = cruelty@free.com password = free
 
 API="http://localhost:4741"
 URL_PATH="/sign-in"
