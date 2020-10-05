@@ -70,8 +70,7 @@ Cards:
 
 ### Unsolved Problems
 
-- Still need to ....
-- Would like to eventually ....
+In future iterations of Cruelty Free: NYC I would like to add themed styling to the application as well as category routes for organization. 
 
 
 ## Images
