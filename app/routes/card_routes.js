@@ -27,8 +27,8 @@ const requireToken = passport.authenticate('bearer', { session: false })
 // instantiate a router (mini app that only handles routes)
 const router = express.Router()
 
-// INDEX '/cards/edibles'
-router.get('/cards/edibles', (req, res, next) => {
+// INDEX '/cards'
+router.get('/cards', requireToken, (req, res, next) => {
   Card.find()
     .then(cards => {
       return cards.map(card => card.toObject())
@@ -36,62 +36,62 @@ router.get('/cards/edibles', (req, res, next) => {
     .then(cards => res.status(200).json({ cards: cards }))
     .catch(next)
 })
-// INDEX '/cards/cosmetics'
-router.get('/cards/cosmetics', (req, res, next) => {
-  Card.find()
-    .then(cards => {
-      return cards.map(card => card.toObject())
-    })
-    .then(cards => res.status(200).json({ cards: cards }))
-    .catch(next)
-})
-// INDEX '/cards/wearables'
-router.get('/cards/wearables', (req, res, next) => {
-  Card.find()
-    .then(cards => {
-      return cards.map(card => card.toObject())
-    })
-    .then(cards => res.status(200).json({ cards: cards }))
-    .catch(next)
-})
-// INDEX '/cards/services'
-router.get('/cards/services', (req, res, next) => {
-  Card.find()
-    .then(cards => {
-      return cards.map(card => card.toObject())
-    })
-    .then(cards => res.status(200).json({ cards: cards }))
-    .catch(next)
-})
+// // INDEX '/cards/cosmetics'
+// router.get('/cards/cosmetics', (req, res, next) => {
+//   Card.find()
+//     .then(cards => {
+//       return cards.map(card => card.toObject())
+//     })
+//     .then(cards => res.status(200).json({ cards: cards }))
+//     .catch(next)
+// })
+// // INDEX '/cards/wearables'
+// router.get('/cards/wearables', (req, res, next) => {
+//   Card.find()
+//     .then(cards => {
+//       return cards.map(card => card.toObject())
+//     })
+//     .then(cards => res.status(200).json({ cards: cards }))
+//     .catch(next)
+// })
+// // INDEX '/cards/services'
+// router.get('/cards/services', (req, res, next) => {
+//   Card.find()
+//     .then(cards => {
+//       return cards.map(card => card.toObject())
+//     })
+//     .then(cards => res.status(200).json({ cards: cards }))
+//     .catch(next)
+// })
 
-// SHOW /cards/edibles/:id
-router.get('/cards/edibles/:id', (req, res, next) => {
+// SHOW /cards/:id
+router.get('/cards/:id', requireToken, (req, res, next) => {
   Card.findById(req.params.id)
     .then(handle404)
     .then(card => res.status(200).json({ card: card.toObject() }))
     .catch(next)
 })
-// SHOW /cards/cosmetics/:id
-router.get('/cards/cosmetics/:id', (req, res, next) => {
-  Card.findById(req.params.id)
-    .then(handle404)
-    .then(card => res.status(200).json({ card: card.toObject() }))
-    .catch(next)
-})
-// SHOW /cards/wearables/:id
-router.get('/cards/wearables/:id', (req, res, next) => {
-  Card.findById(req.params.id)
-    .then(handle404)
-    .then(card => res.status(200).json({ card: card.toObject() }))
-    .catch(next)
-})
-// SHOW /cards/services/:id
-router.get('/cards/services/:id', (req, res, next) => {
-  Card.findById(req.params.id)
-    .then(handle404)
-    .then(card => res.status(200).json({ card: card.toObject() }))
-    .catch(next)
-})
+// // SHOW /cards/cosmetics/:id
+// router.get('/cards/cosmetics/:id', (req, res, next) => {
+//   Card.findById(req.params.id)
+//     .then(handle404)
+//     .then(card => res.status(200).json({ card: card.toObject() }))
+//     .catch(next)
+// })
+// // SHOW /cards/wearables/:id
+// router.get('/cards/wearables/:id', (req, res, next) => {
+//   Card.findById(req.params.id)
+//     .then(handle404)
+//     .then(card => res.status(200).json({ card: card.toObject() }))
+//     .catch(next)
+// })
+// // SHOW /cards/services/:id
+// router.get('/cards/services/:id', (req, res, next) => {
+//   Card.findById(req.params.id)
+//     .then(handle404)
+//     .then(card => res.status(200).json({ card: card.toObject() }))
+//     .catch(next)
+// })
 
 // POST /cards-create
 router.post('/cards-create', requireToken, (req, res, next) => {
@@ -109,8 +109,8 @@ router.post('/cards-create', requireToken, (req, res, next) => {
     .catch(next)
 })
 
-// PATCH /cards/edibles/:id
-router.patch('/cards/edibles/:id', requireToken, removeBlanks, (req, res, next) => {
+// PATCH /cards/:id
+router.patch('/cards/:id/update', requireToken, removeBlanks, (req, res, next) => {
   // if the client attempts to change the `owner` property by including a new
   // owner, prevent that by deleting that key/value pair
   delete req.body.card.owner
@@ -131,90 +131,74 @@ router.patch('/cards/edibles/:id', requireToken, removeBlanks, (req, res, next) 
     .catch(next)
 })
 
-// PATCH /cards/cosmetics/:id
-router.patch('/cards/cosmetics/:id', requireToken, removeBlanks, (req, res, next) => {
-  // if the client attempts to change the `owner` property by including a new
-  // owner, prevent that by deleting that key/value pair
-  delete req.body.card.owner
+// // PATCH /cards/cosmetics/:id
+// router.patch('/cards/cosmetics/:id', requireToken, removeBlanks, (req, res, next) => {
+//   // if the client attempts to change the `owner` property by including a new
+//   // owner, prevent that by deleting that key/value pair
+//   delete req.body.card.owner
+//
+//   Card.findById(req.params.id)
+//     .then(handle404)
+//     .then(card => {
+//       // pass the `req` object and the Mongoose record to `requireOwnership`
+//       // it will throw an error if the current user isn't the owner
+//       requireOwnership(req, card)
+//
+//       // pass the result of Mongoose's `.update` to the next `.then`
+//       return card.updateOne(req.body.card)
+//     })
+//     // if that succeeded, return 204 and no JSON
+//     .then(() => res.sendStatus(204))
+//     // if an error occurs, pass it to the handler
+//     .catch(next)
+// })
+//
+// // PATCH /cards/wearables/:id
+// router.patch('/cards/wearables/:id', requireToken, removeBlanks, (req, res, next) => {
+//   // if the client attempts to change the `owner` property by including a new
+//   // owner, prevent that by deleting that key/value pair
+//   delete req.body.card.owner
+//
+//   Card.findById(req.params.id)
+//     .then(handle404)
+//     .then(card => {
+//       // pass the `req` object and the Mongoose record to `requireOwnership`
+//       // it will throw an error if the current user isn't the owner
+//       requireOwnership(req, card)
+//
+//       // pass the result of Mongoose's `.update` to the next `.then`
+//       return card.updateOne(req.body.card)
+//     })
+//     // if that succeeded, return 204 and no JSON
+//     .then(() => res.sendStatus(204))
+//     // if an error occurs, pass it to the handler
+//     .catch(next)
+// })
+//
+// // PATCH /cards/services/:id
+// router.patch('/cards/services/:id', requireToken, removeBlanks, (req, res, next) => {
+//   // if the client attempts to change the `owner` property by including a new
+//   // owner, prevent that by deleting that key/value pair
+//   delete req.body.card.owner
+//
+//   Card.findById(req.params.id)
+//     .then(handle404)
+//     .then(card => {
+//       // pass the `req` object and the Mongoose record to `requireOwnership`
+//       // it will throw an error if the current user isn't the owner
+//       requireOwnership(req, card)
+//
+//       // pass the result of Mongoose's `.update` to the next `.then`
+//       return card.updateOne(req.body.card)
+//     })
+//     // if that succeeded, return 204 and no JSON
+//     .then(() => res.sendStatus(204))
+//     // if an error occurs, pass it to the handler
+//     .catch(next)
+// })
 
-  Card.findById(req.params.id)
-    .then(handle404)
-    .then(card => {
-      // pass the `req` object and the Mongoose record to `requireOwnership`
-      // it will throw an error if the current user isn't the owner
-      requireOwnership(req, card)
-
-      // pass the result of Mongoose's `.update` to the next `.then`
-      return card.updateOne(req.body.card)
-    })
-    // if that succeeded, return 204 and no JSON
-    .then(() => res.sendStatus(204))
-    // if an error occurs, pass it to the handler
-    .catch(next)
-})
-
-// PATCH /cards/wearables/:id
-router.patch('/cards/wearables/:id', requireToken, removeBlanks, (req, res, next) => {
-  // if the client attempts to change the `owner` property by including a new
-  // owner, prevent that by deleting that key/value pair
-  delete req.body.card.owner
-
-  Card.findById(req.params.id)
-    .then(handle404)
-    .then(card => {
-      // pass the `req` object and the Mongoose record to `requireOwnership`
-      // it will throw an error if the current user isn't the owner
-      requireOwnership(req, card)
-
-      // pass the result of Mongoose's `.update` to the next `.then`
-      return card.updateOne(req.body.card)
-    })
-    // if that succeeded, return 204 and no JSON
-    .then(() => res.sendStatus(204))
-    // if an error occurs, pass it to the handler
-    .catch(next)
-})
-
-// PATCH /cards/services/:id
-router.patch('/cards/services/:id', requireToken, removeBlanks, (req, res, next) => {
-  // if the client attempts to change the `owner` property by including a new
-  // owner, prevent that by deleting that key/value pair
-  delete req.body.card.owner
-
-  Card.findById(req.params.id)
-    .then(handle404)
-    .then(card => {
-      // pass the `req` object and the Mongoose record to `requireOwnership`
-      // it will throw an error if the current user isn't the owner
-      requireOwnership(req, card)
-
-      // pass the result of Mongoose's `.update` to the next `.then`
-      return card.updateOne(req.body.card)
-    })
-    // if that succeeded, return 204 and no JSON
-    .then(() => res.sendStatus(204))
-    // if an error occurs, pass it to the handler
-    .catch(next)
-})
-
-// DELETE /cards/edibles/:id
-router.delete('/cards/edibles/:id', requireToken, (req, res, next) => {
-  Card.findById(req.params.id)
-    .then(handle404)
-    .then(card => {
-      // throw an error if current user doesn't own `card`
-      requireOwnership(req, card)
-      // delete the card ONLY IF the above didn't throw
-      card.deleteOne()
-    })
-    // send back 204 and no content if the deletion succeeded
-    .then(() => res.sendStatus(204))
-    // if an error occurs, pass it to the handler
-    .catch(next)
-})
-
-// DELETE /cards/cosmetics/:id
-router.delete('/cards/cosmetics/:id', requireToken, (req, res, next) => {
+// DELETE /cards/:id
+router.delete('/cards/:id', requireToken, (req, res, next) => {
   Card.findById(req.params.id)
     .then(handle404)
     .then(card => {
@@ -229,36 +213,52 @@ router.delete('/cards/cosmetics/:id', requireToken, (req, res, next) => {
     .catch(next)
 })
 
-// DELETE /cards/wearables/:id
-router.delete('/cards/wearables/:id', requireToken, (req, res, next) => {
-  Card.findById(req.params.id)
-    .then(handle404)
-    .then(card => {
-      // throw an error if current user doesn't own `card`
-      requireOwnership(req, card)
-      // delete the card ONLY IF the above didn't throw
-      card.deleteOne()
-    })
-    // send back 204 and no content if the deletion succeeded
-    .then(() => res.sendStatus(204))
-    // if an error occurs, pass it to the handler
-    .catch(next)
-})
-
-// DELETE /cards/services/:id
-router.delete('/cards/services/:id', requireToken, (req, res, next) => {
-  Card.findById(req.params.id)
-    .then(handle404)
-    .then(card => {
-      // throw an error if current user doesn't own `card`
-      requireOwnership(req, card)
-      // delete the card ONLY IF the above didn't throw
-      card.deleteOne()
-    })
-    // send back 204 and no content if the deletion succeeded
-    .then(() => res.sendStatus(204))
-    // if an error occurs, pass it to the handler
-    .catch(next)
-})
+// // DELETE /cards/cosmetics/:id
+// router.delete('/cards/cosmetics/:id', requireToken, (req, res, next) => {
+//   Card.findById(req.params.id)
+//     .then(handle404)
+//     .then(card => {
+//       // throw an error if current user doesn't own `card`
+//       requireOwnership(req, card)
+//       // delete the card ONLY IF the above didn't throw
+//       card.deleteOne()
+//     })
+//     // send back 204 and no content if the deletion succeeded
+//     .then(() => res.sendStatus(204))
+//     // if an error occurs, pass it to the handler
+//     .catch(next)
+// })
+//
+// // DELETE /cards/wearables/:id
+// router.delete('/cards/wearables/:id', requireToken, (req, res, next) => {
+//   Card.findById(req.params.id)
+//     .then(handle404)
+//     .then(card => {
+//       // throw an error if current user doesn't own `card`
+//       requireOwnership(req, card)
+//       // delete the card ONLY IF the above didn't throw
+//       card.deleteOne()
+//     })
+//     // send back 204 and no content if the deletion succeeded
+//     .then(() => res.sendStatus(204))
+//     // if an error occurs, pass it to the handler
+//     .catch(next)
+// })
+//
+// // DELETE /cards/services/:id
+// router.delete('/cards/services/:id', requireToken, (req, res, next) => {
+//   Card.findById(req.params.id)
+//     .then(handle404)
+//     .then(card => {
+//       // throw an error if current user doesn't own `card`
+//       requireOwnership(req, card)
+//       // delete the card ONLY IF the above didn't throw
+//       card.deleteOne()
+//     })
+//     // send back 204 and no content if the deletion succeeded
+//     .then(() => res.sendStatus(204))
+//     // if an error occurs, pass it to the handler
+//     .catch(next)
+// })
 
 module.exports = router
