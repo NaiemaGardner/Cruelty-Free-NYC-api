@@ -11,6 +11,12 @@ This application allows the user to create, review, update and delete human and 
 - [Deployed API](https://damp-shore-14818.herokuapp.com/)
 - [Project Requirements](https://docs.google.com/document/d/1K0wAjMes_r_JDwlgIMpGIyV4CiMXHEvT0REooq3Scow/edit?usp=sharing)
 
+## Set Up | Installation
+1. Fork and clone this repository.
+2. Run `npm install` for dependencies.
+3. Checkout to a new branch.
+4. Run the development server with `npm run server`.
+
 
 ## Planning Story
 
@@ -70,7 +76,7 @@ Cards:
 
 ### Unsolved Problems
 
-In future iterations of Cruelty Free: NYC I would like to add themed styling to the application as well as category routes for organization. 
+In future iterations of Cruelty Free: NYC I would like to add themed styling to the application as well as category routes for organization.
 
 
 ## Images
